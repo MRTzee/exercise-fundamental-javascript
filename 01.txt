@@ -1,0 +1,36 @@
+let perbedaanMilidetik = Math.abs(tanggal2 - tanggal1);:
+
+Di sini, tanggal2 - tanggal1 menghasilkan perbedaan waktu (dalam milidetik) antara tanggal2 dan tanggal1.
+Fungsi Math.abs() digunakan untuk mengonversi perbedaan waktu menjadi nilai absolut, sehingga pasti positif. Hal ini penting karena perbedaan waktu bisa saja negatif tergantung pada urutan tanggal yang dimasukkan.
+Hasil dari operasi ini adalah perbedaan waktu dalam milidetik antara dua tanggal.
+let perbedaanHari = Math.ceil(perbedaanMilidetik / (1000 * 60 * 60 * 24));:
+
+Di sini, kita mengonversi perbedaan waktu dalam milidetik menjadi jumlah hari.
+Kita membagi perbedaan waktu dalam milidetik dengan jumlah milidetik dalam satu hari (1000 * 60 * 60 * 24) untuk mendapatkan jumlah hari.
+Kita menggunakan Math.ceil() untuk memastikan bahwa hasilnya dibulatkan ke atas ke bilangan bulat terdekat, karena perbedaan milidetik mungkin tidak selalu merupakan bilangan bulat.
+Hasil dari operasi ini adalah jumlah hari antara dua tanggal.
+
+Fungsi Math.pow(x, y) adalah fungsi matematika bawaan dari JavaScript yang digunakan untuk menghitung nilai dari x dipangkatkan dengan y. Dengan kata lain, Math.pow(radius, 2) akan menghasilkan nilai dari radius dipangkatkan dengan 2.
+
+Dalam konteks menghitung luas lingkaran, kita menggunakan Math.pow(radius, 2) untuk menghitung luas, karena rumus luas lingkaran adalah πr². Di sini, radius adalah jari-jari lingkaran, dan kita ingin mengkuadratkan jari-jari ini (mengalikannya dengan dirinya sendiri) untuk mendapatkan luas lingkaran. Oleh karena itu, Math.pow(radius, 2) akan memberikan hasil dari jari-jari dipangkatkan dengan 2, yang sesuai dengan rumus luas lingkaran.
+
+Ekspresi 1000 * 60 * 60 * 24 menggambarkan jumlah milidetik dalam satu hari. Mari kita jelaskan setiap bagian dari ekspresi tersebut:
+
+1000: Ini adalah jumlah milidetik dalam satu detik. Karena ada 1000 milidetik dalam satu detik, kita menggunakan angka 1000 di sini.
+
+60: Ini adalah jumlah detik dalam satu menit. Karena ada 60 detik dalam satu menit, kita menggunakan angka 60 di sini.
+
+60: Ini adalah jumlah menit dalam satu jam. Karena ada 60 menit dalam satu jam, kita menggunakan angka 60 di sini.
+
+24: Ini adalah jumlah jam dalam satu hari. Karena ada 24 jam dalam satu hari, kita menggunakan angka 24 di sini.
+
+Jadi, ketika kita mengalikan semua angka ini bersama-sama, kita mendapatkan jumlah milidetik dalam satu hari. Hasilnya adalah 86.400.000, yang merupakan jumlah total milidetik dalam satu hari. Oleh karena itu, ekspresi 1000 * 60 * 60 * 24 pada dasarnya mengonversi waktu dari hari ke milidetik, sehingga kita dapat menggunakan nilai tersebut untuk mengonversi perbedaan waktu antara dua tanggal dari milidetik menjadi jumlah hari.
+
+
+Fungsi Math.floor() adalah sebuah fungsi bawaan dalam JavaScript yang digunakan untuk membulatkan sebuah angka ke bawah menjadi bilangan bulat terdekat. Artinya, ia mengembalikan nilai integer yang merupakan bilangan bulat terbesar yang kurang dari atau sama dengan argumen yang diberikan.
+
+Misalnya:
+
+Math.floor(3.9) akan mengembalikan 3.
+Math.floor(-2.4) akan mengembalikan -3.
+Fungsi ini sering digunakan dalam situasi di mana kita perlu mengubah nilai desimal menjadi nilai bulat yang lebih rendah tanpa mengubah nilai aslinya. Dalam konteks konversi hari menjadi tahun dan bulan, kita menggunakan Math.floor() untuk memastikan bahwa hasilnya adalah bilangan bulat yang valid, mengingat kita tidak bisa memiliki, misalnya, "0,5" tahun atau "1,2" bulan. Oleh karena itu, kita menggunakan Math.floor() untuk mendapatkan hasil yang lebih akurat dalam hal jumlah tahun dan bulan.
