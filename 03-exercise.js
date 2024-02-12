@@ -19,29 +19,21 @@
 // Palindrome adalah sebuah kata, frasa, angka, atau urutan karakter lainnya
 // yang akan sama jika dibaca dari depan maupun dari belakang.
 // ○ Example : ‘madam’ → palindrome
-// const word = "madam"; // Masukkan kata yang ingin dicek palindrome
+// const word = "hello"; // Masukkan kata yang ingin dicek palindrome
 // // method split('') -> ['h', 'e', 'l', 'l', 'o']
 // // method reverse('') -> ['o', 'l', 'l', 'e', 'h']
 // // method join('') -> 'olleh'
-// const reversedWord = word.split("").reverse().join("");
-// console.log(reversedWord);
+// const isPalindrome = word === word.split("").reverse().join("");
 // // Periksa apakah stringnya sama dengan kebalikannya
-// console.log(word === reversedWord ? "palindrom" : "bukan palindrome");
+// console.log(isPalindrome);
 
 // CARA LAIN
-// const palindrome = "malam";
-// let q = true;
-// for (let i = palindrome.length - 1; i >= 0; i--) {
-//   if (palindrome[i] !== palindrome[palindrome.length - 1 - i]) {
-//     q = false;
-//     break;
-//   }
-// }
-// if (q) {
-//   console.log(`${palindrome} is a palindrome.`);
-// } else {
-//   console.log(`${palindrome} is not a palindrome.`);
-// }
+// const kata = "malam";
+// let reverse = "";
+// for (let i = kata.length - 1; i >= 0; i--) {
+//   reverse += kata[i]
+//   console.log(kata[i]);
+//  }
 
 // 3  Write a code to convert centimeter to kilometer ====================================================================
 // ○ Example : 100000 → “1 km"
@@ -52,13 +44,15 @@
 
 // 4 Write a code to format number as currency (IDR) =====================================================================
 // ○ Example : 1000 → “Rp. 1.000,00”
-// const amount2 = 1000;
-// // Fungsi toLocaleString() digunakan untuk memformat angka ke dalam format mata uang yang diinginkan. Di sini, kita menggunakan konfigurasi 'id-ID' untuk bahasa Indonesia dan 'IDR' untuk mata uang Rupiah.
-// const formatCurrency = amount2.toLocaleString("id-ID", {
+// const harga = 1000;
+// // Fungsi digunakan untuk memformat angka ke dalam format mata uang yang diinginkan. Di sini, kita menggunakan konfigurasi 'id-ID' untuk bahasa Indonesia dan 'IDR' untuk mata uang Rupiah.
+// const rupiah = new Intl.NumberFormat("id-ID", {
 //   style: "currency",
 //   currency: "IDR",
+//   Ngilangin 0 dua di ujung
+//   maximumFractionDigits: 0,
 // });
-// console.log(formatCurrency); // Output: Rp. 1.000,00
+// console.log(rupiah.format(harga)); // Output: Rp. 1.000
 
 // 5 write a code to remove the first occurrence of a given “search string” from a string ===============================
 // ○ Example : string = “Hello world”, search string = “ell” → “Ho world”
@@ -83,16 +77,16 @@
 // console.log(result);
 // console.log(`${originalString}", search string = "${searchString}" -> "${result}"`);
 
-// // 6 Write a code to capitalize the first letter of each word in a string =================================
-// // ○ Example : “hello world” → “Hello World”
+// 6 Write a code to capitalize the first letter of each word in a string =================================
+// ○ Example : “hello world” → “Hello World”
 // let originalString = "hello world";
 // let words = originalString.split(" ");
-// console.log(words);
-// console.log(words.length);
-// console.log(words[0][0]);
-// console.log(words[0].substring(1));
+// // console.log(words);
+// // console.log(words.length);
+// // console.log(words[0][0]);
+// // console.log(words[0].substring(1));
 // for (let i = 0; i < words.length; i++) {
-//   words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+//   words[i] = words[i][0].toUpperCase() + words[i].slice(1);
 // }
 // let capitalizedString = words.join(" ");
 // console.log(capitalizedString);
@@ -113,36 +107,18 @@
 
 // // 8  Write a code to swap the case of each character from string=================================================================
 // // ○ Example : ‘The QuiCk BrOwN Fox’ -> ‘ tHE qUIcK bRoWn fOX’
+// const inputString = "The QuiCk BrOwN Fox";
+// let swappedString = "";
 
-// const str = 'The QuiCk BrOwN Fox';
-// const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-// const LOWER = 'abcdefghijklmnopqrstuvwxyz';
-// let result = [];
-
-// for (let i = 0; i < str.length; i++) {
-//   if(UPPER.indexOf(str[i]) !== -1) {
-//     result.push(str[i].toLowerCase());
-//   } else if(LOWER.indexOf(str[i] !== -1)) {
-//     result.push(str[i].toUpperCase());
-//   } else {
-//     result.push(str[i]);
-//   }
+// for(let i = 0; i < inputString.length; i++) {
+//     const char = inputString[i];
+//     if (char === inputString[i].toUpperCase()){
+//         swappedString += char.toLowerCase();
+//     } else {
+//         swappedString += char.toUpperCase();
+//     }
 // }
-// console.log(result.join(''));
-
-// CARA LAIN
-// mendefinisikan sebuah string
-let inputString = "The QuiCk BrOwN Fox";
-// .split('') untuk membagi string menjadi terpisah dan bertipe array
-// Metode map() digunakan untuk membuat array baru dengan menerapkan fungsi pada setiap karakter dalam array yang dihasilkan oleh inputString.split('')
-let swappedString = inputString
-  .split("")
-  .map((char) =>
-    char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase()
-  )
-  .join("");
-// console.log(swappedString = inputString.split('').map(char => char)); //19 karakter
-console.log(`"${inputString}" -> "${swappedString}"`);
+// console.log(swappedString);
 
 // 9 Write a code to find the largest of two given integers
 // ○ Example : num1 = 42, num2 = 27 → 42
@@ -150,51 +126,49 @@ console.log(`"${inputString}" -> "${swappedString}"`);
 // let num2 = 27;
 // let largestNumber = Math.max(num1, num2)
 // console.log(`${num1}, ${num2} -> ${largestNumber}`);
+// CARA LAIN
+// const num1 = 1;
+// const num2 = 2;
+// let largest;
+// if (num1 > num2) {
+//     largest = num1;
+// } else {
+//     largest = num2;
+// }
+// console.log(largest);
 
 // 10 Write a conditional statement to sort three numbers =============================================================================
 // ○ Example : num1 = 42, num2 = 27, num3 = 18 → 18, 27, 42
-// let num1 = 42;
-// let num2 = 27;
-// let num3 = 18;
+// const num1 = 42;
+// const num2 = 27;
+// const num3 = 18;
 
-// if (num1 > num2) {
-//   let sort = num1;
-//   num1 = num2;
-//   num2 = sort;
-// }
+// const smallest = Math.min(num1, num2, num3);
+// const largest = Math.max(num1, num2, num3);
+// const middle = num1 + num2 + num3 - smallest - largest;
 
-// if (num1 > num3) {
-//   let sort = num1;
-//   num1 = num3;
-//   num3 = sort;
-// }
-
-// if (num2 > num3) {
-//   let sort = num2;
-//   num2 = num3;
-//   num3 = sort;
-// }
-// console.log(`${num1}, ${num2}, ${num3}`);
-
+// console.log(`${smallest}, ${middle}, ${largest}`);
 // CARA LAIN
 // let num1 = 42;
 // let num2 = 27;
 // let num3 = 18;
 // // Masukkan angka-angka ke dalam array
 // let numbers = [num1, num2, num3];
-
 // // Urutkan array dengan metode sort dan fungsi pembanding
+// // cara lain
+// console.log(numbers.sort());
+// // cara lain
 // numbers.sort((a, b) => a - b);
-// // yang terjadi di dalamnya
-// // array saat ini [42, 27, 18]
-// // 1 membandingkan angka pertama dengan angka kedua 42(a) dan 27(b), 42 - 27 = 15(positif), 27 akan ditempatkan sebelum 42
-// // array saat ini [27, 42, 18]
-// // 2 membandingkan angka pertama dengan angka ketiga 42(a) dan 18(b), 42 - 18 = 24(positif), 18 akan ditempatkan sebelum 42
-// // array saat ini [27, 18, 42]
-// // 3 membandingkan angka kedua dengan angka ketiga 27(a) dan 18(b), 27 - 18 = 9(positif), 18 akan ditempatkan sebelum 27
-// // array saat ini [18, 27, 42]
-// // jika hasil pengurangan bernilai negatif maka angka tetap berada di posisinya
-// let result = numbers.join(', '); // menggabungkan array
+// yang terjadi di dalamnya
+// array saat ini [42, 27, 18]
+// 1 membandingkan angka pertama dengan angka kedua 42(a) dan 27(b), 42 - 27 = 15(positif), 27 akan ditempatkan sebelum 42
+// array saat ini [27, 42, 18]
+// 2 membandingkan angka pertama dengan angka ketiga 42(a) dan 18(b), 42 - 18 = 24(positif), 18 akan ditempatkan sebelum 42
+// array saat ini [27, 18, 42]
+// 3 membandingkan angka kedua dengan angka ketiga 27(a) dan 18(b), 27 - 18 = 9(positif), 18 akan ditempatkan sebelum 27
+// array saat ini [18, 27, 42]
+// jika hasil pengurangan bernilai negatif maka angka tetap berada di posisinya
+// let result = numbers.join(", "); // menggabungkan array
 // // Cetak array yang telah diurutkan
 // console.log(`${num1}, ${num2}, ${num3} -> ${result}`);
 
@@ -215,16 +189,16 @@ console.log(`"${inputString}" -> "${swappedString}"`);
 
 // 12 Write a code to change every letter a into * from a string of input =========================================================
 // ○ Example : ‘An apple a day keeps the doctor away’ -> `*n *pple * d*y keeps the doctor *w*y`
-// const str = "An apple a day keeps the doctor away";
-// const modifiedStr = "*";
-// let result = "";
+// const str = "An apple a day keeps the doctor away".toLowerCase();
+// const replaceWord = "a";
+// const modifiedStr = "";
 
 // for (let i = 0; i < str.length; i++) {
-//   if (str[i] === "a" || str[i] === "A") {
-//     result += modifiedStr;
+//   if (str[i] === replaceWord) {
+//     modifiedStr += "*";
 //   } else {
-//     result += str[i];
+//     modifiedStr += str[i];
 //   }
 // }
 
-// console.log(result);
+// console.log(modifiedStr);
