@@ -7,7 +7,7 @@ function createTriangle(height) {
     // digunakan untuk mengontrol jumlah kolom atau lebar segitiga. Setiap iterasi dalam perulangan ini merepresentasikan satu kolom dari segitiga.
     for (let j = 1; j <= i; j++) {
       row += "* ";
-      // console.log(row += "* ");
+      //   console.log(row += "* ");
     }
     // menampilkan
     console.log(row);
@@ -15,7 +15,7 @@ function createTriangle(height) {
 }
 createTriangle(5);
 
-// ===========================================================
+// 1 ===========================================================
 function createNumberTriangle(height) {
   let currentNumber = 1;
   // mengontrol jumlah baris atau tinggi segitiga. Setiap iterasi dalam perulangan ini merepresentasikan satu baris dari segitiga.
@@ -25,7 +25,8 @@ function createNumberTriangle(height) {
     // digunakan untuk mengontrol jumlah kolom atau lebar segitiga. Setiap iterasi dalam perulangan ini merepresentasikan satu kolom dari segitiga.
     for (let j = 1; j <= i; j++) {
       // untuk mengonversi nomor menjadi string dan menambahkan nol di depannya
-      row += currentNumber.toString().padStart(2, "0") + " ";
+      row += (currentNumber < 10 ? "0" : "") + currentNumber + " ";
+      //   row += currentNumber.toString().padStart(2, "0") + " ";
       // nilai currentNumber ditambahkan dengan 1 agar angka berikutnya dicetak pada kolom berikutnya.
       currentNumber++;
     }
@@ -35,26 +36,27 @@ function createNumberTriangle(height) {
 }
 createNumberTriangle(4);
 
-// ==========================================================================
+// 2 ==========================================================================
 // Cara Lain bermain dengan 3 IF
 function fizzBuzz(n) {
+  let message = "";
   for (let i = 1; i <= n; i++) {
-    let output = "";
     if (i % 3 === 0 && i % 5 === 0) {
-      output = "FizzBuzz";
+      message += "FizzBuzz" + "\n";
     } else if (i % 3 === 0) {
-      output = "Fizz";
+      message += "Buzz" + "\n";
     } else if (i % 5 === 0) {
-      output = "Buzz";
+      message += "Fizz" + "\n";
     } else {
-      output = i;
+      message += i + "\n";
     }
-    console.log(output);
   }
+  console.log(message);
 }
 fizzBuzz(15);
 
-// ===============================================================================
+// 3 ===============================================================================
+
 function calculateBMI(weight, height) {
   // Calculate BMI = weight (kg) / (height (meter))2
   let bmi = weight / (height * height);
@@ -76,26 +78,50 @@ let height = 1.75; // in meters
 let bmiCategory = calculateBMI(weight, height);
 console.log(bmiCategory);
 
-// ==============================================================================
+// 4 ==============================================================================
+// Cara Mas Daniel
 function removeOddNumbers(arr) {
-  // Use the filter method to create a new array with only even numbers
-  // Fungsi filter() digunakan untuk membuat array baru yang berisi elemen-elemen dari array arr yang lulus kondisi yang diberikan.
-  // Menggunakan Arrow Function
-  let evenNumbers = arr.filter((num) => num % 2 === 0);
+  const evenNumbers = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 === 0) {
+      evenNumbers.push(arr[i]);
+    }
+  }
   return evenNumbers;
 }
+// function removeOddNumbers(arr) {
+//   // Use the filter method to create a new array with only even numbers
+//   // Fungsi filter() digunakan untuk membuat array baru yang berisi elemen-elemen dari array arr yang lulus kondisi yang diberikan.
+//   // Menggunakan Arrow Function
+//   let evenNumbers = arr.filter((num) => num % 2 === 0);
+//   return evenNumbers;
+// }
 
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let result = removeOddNumbers(numbers);
-console.log(result);
+// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// let result = removeOddNumbers(numbers);
+// console.log(result);
 
-// ==============================================================================
-function splitStringToArray(str) {
-  // Use the split method to split the string into an array of words
-  let wordsArray = str.split(" ");
-  return wordsArray;
-}
+// 5 ==============================================================================
+// function splitString(input) {
+//     return input.split(" ");
+// }
+// console.log(splitString("Hello World"));
 
-let sentence = "Hello World";
-let words = splitStringToArray(sentence);
-console.log(words);
+// tanpa menggunakan build in method
+const splitString = function (input) {
+  let kata = [];
+  let temp = "";
+
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] === " ") {
+      kata.push(temp);
+      temp = "";
+      continue; //skip loopingan dibawah if
+    }
+    temp += input[i];
+  }
+  kata.push(temp);
+  return kata;
+};
+
+console.log(splitString("Hello World Jogja"));
