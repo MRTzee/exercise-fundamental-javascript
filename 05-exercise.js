@@ -69,6 +69,7 @@
 // Write a function to calculate each element in the same position from two arrays of integer. Assume both arrays are
 // of the same length.
 // a. Example : [1, 2, 3] + [3, 2, 1] → [4, 4, 4]
+// Kelemahan jika ditambahkan index makan akan bernilai NaN
 // CARA 1
 // function calculateSum(arr1, arr2) {
 //     const result = [];
@@ -78,23 +79,26 @@
 //     }
 //     return result;
 // }
-// const arr1 = [1, 2, 3];
+// const arr1 = [1, 2, 3, ];
 // const arr2 = [3, 2, 1];
 // console.log(calculateSum(arr1, arr2));
 // CARA 2
-// function calculateSum(arr1, arr2) {
-//     // map() membuat array baru dengan menerapkan suatu fungsi pada setiap elemen array.
-//     // (value, index) => "arrow function"
-//     // value yang mewakili nilai pada setiap iterasi dari array arr1
-//     // index yang mewakili indeks dari nilai tersebut dalam array.
-//     // value + arr2[index] -> untuk menambahkan nilai dari arr1 dengan nilai yang memiliki indeks yang sama dalam array arr2.
-//     return arr1.map((value, index) => value + arr2[index]);
-// }
-// const arr1 = [1, 2, 3];
-// const arr2 = [3, 2, 1];
-// console.log(calculateSum(arr1, arr2));
-// Jadi, secara keseluruhan, bagian ini akan menghasilkan array baru yang berisi hasil penjumlahan setiap elemen dari arr1 dengan elemen yang memiliki indeks yang sama dari arr2.
+// // [1, 2, 3, 4, 5]
+// // [1, 2, 3]
 
+// // function calculateArray (arr1, arr2) {
+// //     const result = [];
+// //     const maxLength = Math.max(arr1.length, arr2.length);
+
+// //     for (let i = 0; i < maxLength; i ++) {
+// //         const sum = (arr1[i] || 0) + (arr2[i] || 0);
+// //         result.push (sum);
+// //     }
+
+// //     return result;
+// // }
+
+// // console.log(calculateArray ([1, 2, 3, 5], [1, 2, 3]));
 // 5 ========================================================================================================
 // Write a function that adds an element to the end of an array. However, the element should only be added if it is
 // not already in the array.
@@ -263,25 +267,59 @@
 // 13 ==================================================================================================================================
 // Write a function from a given array of mixed data types and return the sum of all the number
 // a. Example : mixedArray = ["3", 1, "string", null, false, undefined, 2] → 3
-function tambahArray(mixedArray) {
-  let sum = 0;
-  for (let i = 0; i < mixedArray.length; i++) {
-    if (typeof mixedArray[i] === Number) {
-      sum += Number(mixedArray[i]);
-    } else {
-      sum += mixedArray[i];
-    }
-    return sum;
-  }
-}
-const mixedArray = ["3", 1, "string", null, false, undefined, 2];
-console.log(tambahArray(mixedArray));
+// function sumOfNumbers(mixedArray) {
+//     let sum = 0;
+//     for (let i = 0; i < mixedArray.length; i++) {
+//       if (typeof mixedArray[i] === 'number') {
+//         sum += mixedArray[i];
+//       }
+//     }
+//     return sum;
+//   }
+
+//   // Example usage:
+//   const mixedArray = ["3", 1, "string", null, false, undefined, 2];
+//   console.log(sumOfNumbers(mixedArray));
+
 // 14 =================================================================================================================================
 // Write a function from the below array of number that will return sum of duplicate values.
 // let arr = [10, 20, 40, 10, 50, 30, 10, 60, 10];
 // a. The function will return 40
+// function sumDuplicate(arr) {
+// //   const duplicateValues = arr.filter((value, index, array) => {
+// //     console.log(index);
+
+// //     return array.indexOf(value) !== index;
+// //   });
+// //   console.log(duplicateValues);
+
+// //   let result = 0;
+// //   for (let item of arr) {
+// //     if (duplicateValues.includes(item)) {
+// //       result += item;
+// //     }
+// //   }
+// //   return result;
+// // }
+
+// // console.log(sumDuplicate([10, 20, 40, 40, 10, 50, 30, 10, 60, 10]));
 
 // 15 ==================================================================================================================================
 // Write a game of rock, paper, scissor function that will return 'Win' or 'Lose'. The function will randomly pick
 // between rock, paper, or scissor.
 // a. Example: if you throw a rock as an argument and the function pick a scissor then it will return 'Win'
+// function rockPaperScissors(playerMove) {
+//     const computerMoves = ['rock', 'paper', 'scissors'];
+//     const computerMove = computerMoves[Math.floor(Math.random() * computerMoves.length)];
+//     if (playerMove === computerMove) {
+//       return 'Tie';
+//     }
+//     if ((playerMove === 'rock' && computerMove === 'scissors') ||
+//         (playerMove === 'scissors' && computerMove === 'paper') ||
+//         (playerMove === 'paper' && computerMove === 'rock')) {
+//       return 'Win';
+//     }
+//     return 'Lose';
+//   }
+//   // Example usage:
+//   console.log(rockPaperScissors('rock'));
