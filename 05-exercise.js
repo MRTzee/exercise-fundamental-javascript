@@ -225,3 +225,63 @@
 //   const arr1 = [1, 2, 3, 4, 5];
 //   const arr2 = [3, 4, 5, 6, 7];
 //   console.log(findDifference(arr1, arr2));
+
+// 11 ===============================================================================================================================
+// Based on the array below write a function that will return primitive data types only.
+// let arr = [1, [], undefined, {}, "string", {}, []];
+// a. The function will return [1, undefined, “string”]
+// function filterPrimitives(arr) {
+//     return arr.filter(item => typeof item !== 'object' && !Array.isArray(item));
+//   }
+//   const arr = [1, [], undefined, {}, "string", {}, []];
+//   console.log(filterPrimitives(arr)); // Output: [1, undefined, "string"]
+
+// 12 ==================================================================================================================================
+// Write a function from a given array of numbers and return the second smallest number
+// a. Example : numbers = [5, 3, 1, 7, 2, 6] → 2
+// CARA 1
+// function smallArray(numbers) {
+//     let smallest = 0
+//     for (i in numbers) {
+//       if (numbers[smallest] > numbers[i]) smallest = i
+//     }
+//     return smallest
+// }
+// const numbers = [5, 3, 1, 7, 2, 6]
+// console.log(smallArray(numbers));
+// CARA 2
+// function secondSmallestNumber(numbers) {
+//     // Sort the array in ascending order
+//     numbers.sort((a, b) => a - b);
+//     // Return the second element in the sorted array
+//     return numbers[1];
+// }
+// // Example usage:
+// const numbers = [5, 3, 1, 7, 2, 6];
+// console.log(secondSmallestNumber(numbers));
+
+// 13 ==================================================================================================================================
+// Write a function from a given array of mixed data types and return the sum of all the number
+// a. Example : mixedArray = ["3", 1, "string", null, false, undefined, 2] → 3
+function tambahArray(mixedArray) {
+  let sum = 0;
+  for (let i = 0; i < mixedArray.length; i++) {
+    if (typeof mixedArray[i] === Number) {
+      sum += Number(mixedArray[i]);
+    } else {
+      sum += mixedArray[i];
+    }
+    return sum;
+  }
+}
+const mixedArray = ["3", 1, "string", null, false, undefined, 2];
+console.log(tambahArray(mixedArray));
+// 14 =================================================================================================================================
+// Write a function from the below array of number that will return sum of duplicate values.
+// let arr = [10, 20, 40, 10, 50, 30, 10, 60, 10];
+// a. The function will return 40
+
+// 15 ==================================================================================================================================
+// Write a game of rock, paper, scissor function that will return 'Win' or 'Lose'. The function will randomly pick
+// between rock, paper, or scissor.
+// a. Example: if you throw a rock as an argument and the function pick a scissor then it will return 'Win'
