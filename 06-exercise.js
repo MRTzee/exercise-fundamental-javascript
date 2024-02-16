@@ -120,34 +120,38 @@
 
 // 2 =====================================================================================================
 // Product class
+// ● Create a program to create transaction
+// ● Product Class
+// ○ Properties
 class Product {
   constructor(name, price) {
-    this.name = name;
-    this.price = price;
+    this.name = name; // ■ Name
+    this.price = price; // ■ Price
   }
 }
 
 // Transaction class
+// ○ Properties
 class Transaction {
   constructor() {
-    this.products = [];
-    this.qty = 0;
-    this.total = 0;
+    this.products = []; // ■ Product
+    this.qty = 0; // ■ All product data
+    this.total = 0; // ■ Total
   }
 
-  // Add to cart method
+  // Add to cart method → Add product to transaction
   addToCart(product, qty) {
     this.products.push(product);
     this.qty += qty;
     this.total += product.price * qty;
   }
 
-  // Show total method
+  // Show total method → Show total current transaction
   showTotal() {
     return this.total;
   }
 
-  // Checkout method
+  // Checkout method → Finalize transaction, return transaction data
   checkout() {
     const transactionData = {
       products: this.products,
@@ -155,9 +159,9 @@ class Transaction {
       total: this.total,
     };
     // Reset transaction data for reuse
-    this.products = [];
-    this.qty = 0;
-    this.total = 0;
+    // this.products = [];
+    // this.qty = 0;
+    // this.total = 0;
     return transactionData;
   }
 }
