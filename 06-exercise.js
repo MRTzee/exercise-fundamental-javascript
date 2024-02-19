@@ -134,35 +134,31 @@ class Product {
 // ○ Properties
 class Transaction {
   constructor() {
-    this.products = []; // ■ Product
-    this.qty = 0; // ■ All product data
-    this.total = 0; // ■ Total
+    this.products = []; // Array untuk menyimpan produk dalam transaksi
+    this.total = 0; // Total harga transaksi
   }
 
-  // Add to cart method → Add product to transaction
+  // Method untuk menambahkan produk ke dalam transaksi
   addToCart(product, qty) {
-    this.products.push(product);
-    this.qty += qty;
-    this.total += product.price * qty;
+    this.products.push({ product, qty });
+    this.total += product.price * qty; // Menambahkan harga produk ke total
   }
 
-  // Show total method → Show total current transaction
+  // Method untuk menampilkan total harga transaksi
   showTotal() {
     return this.total;
   }
 
-  // Checkout method → Finalize transaction, return transaction data
+  // Method untuk menyelesaikan transaksi dan mengembalikan data transaksi
   checkout() {
-    const transactionData = {
-      products: this.products,
-      qty: this.qty,
+    return {
+      products: this.products.map(({ product, qty }) => ({
+        name: product.name,
+        price: product.price,
+        quantity: qty,
+      })),
       total: this.total,
     };
-    // Reset transaction data for reuse
-    // this.products = [];
-    // this.qty = 0;
-    // this.total = 0;
-    return transactionData;
   }
 }
 
@@ -171,9 +167,6 @@ const apple = new Product("Apple", 0.5);
 const banana = new Product("Banana", 0.25);
 
 const transaction = new Transaction();
-transaction.addToCart(apple, 4);
-transaction.addToCart(banana, 6);
-console.log(`Total: $${transaction.showTotal()}`);
-
-const transactionData = transaction.checkout();
-console.log("Checkout data:", transactionData);
+transaction.addToCart(apple, 2);
+transaction.addToCart(banana, 3);
+console.log(transaction.checkout());
