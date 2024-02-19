@@ -1,31 +1,37 @@
-class Product {
-  constructor(name, price) {
-    this.name = name;
-    this.price = price;
-  }
+function getRandomItem() {
+  return {
+    // Properti health akan memiliki nilai 10 jika hasil dari Math.random() kurang dari 0.5, atau 0 jika tidak.
+    health: Math.random() < 0.5 ? 10 : 0,
+    power: Math.random() < 0.5 ? 10 : 0,
+  };
+}
+console.log(Math.random());
+console.log(Math.random());
+console.log(Math.random());
+console.log(Math.random());
+console.log(Math.random());
+console.log(getRandomItem());
+console.log(getRandomItem());
+console.log(getRandomItem());
+console.log(getRandomItem());
+console.log(getRandomItem());
+console.log(getRandomItem());
+
+function useItem(item) {
+  health += item.health;
+  power += item.power;
+  return {
+    health,
+    power,
+  };
 }
 
-class Transaction extends Product {
-  constructor(name, price) {
-    super(name, price);
-    this.qty = 0;
-    this.total = 0;
-  }
-  addToCart(product, qty) {
-    this.product = product;
-    this.qty += qty;
-    this.total += product.price * qty;
-  }
-
-  showTotal() {
-    return this.total;
-  }
-}
-
-const apple = new Product("Apple", 0.5);
-const banana = new Product("Banana", 0.25);
-
-const transaction = new Transaction();
-transaction.addToCart(apple, 4);
-console.log(transaction);
-console.log(apple);
+// Get random items for each player
+let health = 100;
+let power = 100;
+const HealthDanPowerPlayer1 = getRandomItem();
+const HealthDanPowerPlayer2 = getRandomItem();
+const player1 = useItem(HealthDanPowerPlayer1);
+const player2 = useItem(HealthDanPowerPlayer2);
+console.log(player1);
+console.log(player2);
