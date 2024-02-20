@@ -1,37 +1,84 @@
-function getRandomItem() {
-  return {
-    // Properti health akan memiliki nilai 10 jika hasil dari Math.random() kurang dari 0.5, atau 0 jika tidak.
-    health: Math.random() < 0.5 ? 10 : 0,
-    power: Math.random() < 0.5 ? 10 : 0,
-  };
-}
-console.log(Math.random());
-console.log(Math.random());
-console.log(Math.random());
-console.log(Math.random());
-console.log(Math.random());
-console.log(getRandomItem());
-console.log(getRandomItem());
-console.log(getRandomItem());
-console.log(getRandomItem());
-console.log(getRandomItem());
-console.log(getRandomItem());
-
-function useItem(item) {
-  health += item.health;
-  power += item.power;
-  return {
-    health,
-    power,
-  };
+class Employee {
+  constructor(name) {
+    this.name = name;
+    this.workingHours = 0;
+  }
 }
 
-// Get random items for each player
-let health = 100;
-let power = 100;
-const HealthDanPowerPlayer1 = getRandomItem();
-const HealthDanPowerPlayer2 = getRandomItem();
-const player1 = useItem(HealthDanPowerPlayer1);
-const player2 = useItem(HealthDanPowerPlayer2);
-console.log(player1);
-console.log(player2);
+class FulltimeEmployee extends Employee {
+  constructor(name) {
+    // supaya bisa digunakan oleh induk class, kirim barang dari anak
+    super(name);
+  }
+
+  addWorkingHours(hour) {
+    this.workingHours += hour;
+  }
+
+  calculateTotalSalary() {
+    const normalRate = 100000;
+    const overTimeRate = 75000;
+
+    if (this.workingHours <= 6) {
+      return {
+        total: "Rp " + (this.workingHours * normalRate).toLocaleString("id-ID"),
+      };
+    } else {
+      const normalHour = 6;
+      const overTimehour = this.workingHours - normalHour;
+
+      return {
+        total:
+          "Rp " +
+          (
+            overTimehour * overTimeRate +
+            normalHour * normalRate
+          ).toLocaleString("id-ID"),
+      };
+    }
+  }
+}
+
+class ParttimeEmployee extends Employee {
+  constructor(name) {
+    // supaya bisa digunakan oleh induk class, kirim barang dari anak
+    super(name);
+  }
+
+  addWorkingHours(hour) {
+    this.workingHours += hour;
+  }
+
+  calculateTotalSalary() {
+    const normalRate = 50000;
+    const overTimeRate = 30000;
+
+    if (this.workingHours <= 6) {
+      return {
+        total: "Rp " + (this.workingHours * normalRate).toLocaleString("id-ID"),
+      };
+    } else {
+      const normalHour = 6;
+      const overTimehour = this.workingHours - normalHour;
+
+      return {
+        total:
+          "Rp " +
+          (
+            overTimehour * overTimeRate +
+            normalHour * normalRate
+          ).toLocaleString("id-ID"),
+      };
+    }
+  }
+}
+
+// FULL TIME
+const employee1 = new FulltimeEmployee("budi");
+employee1.addWorkingHours(7);
+console.log(employee1.calculateTotalSalary());
+
+// PART TIME
+const employee2 = new ParttimeEmployee("joko");
+employee2.addWorkingHours(7);
+console.log(employee2.calculateTotalSalary());

@@ -22,93 +22,76 @@
 // ● Get random item for each player before shooting
 // ● Show each player status after shooting
 // ■ Show winner name
+// class Player {
+//   constructor(name, health = 100, power = 10) {
+//     this.name = name;
+//     this.health = health;
+//     this.power = power;
+//   }
 
-class Player {
-  constructor(name) {
-    this.name = name;
-    this.health = 100;
-    this.power = 10;
-  }
+//   damage(power) {
+//     this.health -= power;
+//   }
 
-  hit(opponent) {
-    opponent.health -= this.power;
-  }
+//   useItem(item) {
+//     this.health += item.health;
+//     this.power += item.power;
+//   }
 
-  useItem(item) {
-    this.health += item.health;
-    this.power += item.power;
-  }
+//   showStatus() {
+//     return `${this.name} (Health => ${this.health}, Power => ${this.power})`;
+//   }
+// }
 
-  showStatus() {
-    return `${this.name} (Health => ${this.health}, Power => ${this.power})`;
-  }
-}
+// class ShootingGame {
+//   constructor(player1, player2) {
+//     this.player1 = player1;
+//     this.player2 = player2;
+//   }
 
-class ShootingGame {
-  constructor(player1, player2) {
-    this.player1 = player1;
-    this.player2 = player2;
-  }
+//   getRandomItem() {
+//     const health = Math.random() < 0.5 ? 0 : 10;
+//     const power = Math.random() < 0.5 ? 0 : 10;
+//     // return {health: health, power: power}
+//     return { health, power }; //shortcut
+//   }
 
-  getRandomItem() {
-    return {
-      // Properti health akan memiliki nilai 10 jika hasil dari Math.random() kurang dari 0.5, atau 0 jika tidak.
-      health: Math.random() < 0.5 ? 10 : 0,
-      power: Math.random() < 0.5 ? 10 : 0,
-    };
-  }
+//   start() {
+//     while (this.player1.health > 0 && this.player2.health > 0) {
+//       // tampilin dulu status sekarang
+//       this.player1.showStatus();
+//       this.player2.showStatus();
 
-  start() {
-    let round = 1;
-    while (true) {
-      console.log(`Round ${round}`);
-      console.log("Player status before shooting:");
-      console.log(this.player1.showStatus());
-      console.log(this.player2.showStatus());
+//       // ini generate random item
+//       const itemPlayer1 = this.getRandomItem();
+//       const itemPlayer2 = this.getRandomItem();
 
-      // Get random items for each player
-      const item1 = this.getRandomItem();
-      const item2 = this.getRandomItem();
-      this.player1.useItem(item1);
-      this.player2.useItem(item2);
+//       this.player1.useItem(itemPlayer1);
+//       this.player2.useItem(itemPlayer2);
 
-      console.log("Player status after getting items:");
-      console.log(this.player1.showStatus());
-      console.log(this.player2.showStatus());
+//       // player1 hit player2 dan sebaliknya
+//       this.player2.damage(this.player1.power);
+//       this.player1.damage(this.player2.power);
 
-      // Player 1 shoots player 2
-      console.log(`${this.player1.name} shoots ${this.player2.name}`);
-      this.player1.hit(this.player2);
-      console.log("Player status after shooting:");
-      console.log(this.player1.showStatus());
-      console.log(this.player2.showStatus());
+//       // tampilin status sekarang setelah kena damage
+//       console.log(this.player1.showStatus());
+//       console.log(this.player2.showStatus());
+//     }
 
-      if (this.player2.health <= 0) {
-        console.log(`Winner: ${this.player1.name}`);
-        break;
-      }
+//     if (this.player1.health <= 0) {
+//       console.log("1");
+//       return `${this.player2.name} win`;
+//     } else {
+//       console.log("2");
+//       return `${this.player1.name} win`;
+//     }
+//   }
+// }
 
-      // Player 2 shoots player 1
-      console.log(`${this.player2.name} shoots ${this.player1.name}`);
-      this.player2.hit(this.player1);
-      console.log("Player status after shooting:");
-      console.log(this.player1.showStatus());
-      console.log(this.player2.showStatus());
-
-      if (this.player1.health <= 0) {
-        console.log(`Winner: ${this.player2.name}`);
-        break;
-      }
-
-      round++;
-    }
-  }
-}
-
-const player1 = new Player("Player A");
-const player2 = new Player("Player B");
-const game = new ShootingGame(player1, player2);
-game.start();
+// const player1 = new Player("budi");
+// const player2 = new Player("siti");
+// const game = new ShootingGame(player1, player2);
+// game.start();
 
 // Exercise - Salary
 // ● Specifications :
@@ -127,55 +110,142 @@ game.start();
 // ■ Create a method in that class to add working hour per day
 // ■ Create a method in that class to calculate total salary
 // ○ Use inheritance concept
+// class Employee {
+//   constructor(hourlyRate, overtimeRate) {
+//     // tarif per jam (hourlyRate)
+//     this.hourlyRate = hourlyRate;
+//     // tarif lembur (overtimeRate)
+//     this.overtimeRate = overtimeRate;
+//     // jumlah jam kerja (workingHours)
+//     this.workingHours = 0;
+//   }
 
-class Employee {
-  constructor(hourlyRate, overtimeRate) {
-    // tarif per jam (hourlyRate)
-    this.hourlyRate = hourlyRate;
-    // tarif lembur (overtimeRate)
-    this.overtimeRate = overtimeRate;
-    // jumlah jam kerja (workingHours)
-    this.workingHours = 0;
-  }
+//   //  menambahkan jumlah jam kerja per hari.
+//   addWorkingHours(hours) {
+//     this.workingHours += hours;
+//   }
 
-  //  menambahkan jumlah jam kerja per hari.
-  addWorkingHours(hours) {
-    this.workingHours += hours;
-  }
+//   // Metode calculateSalary() digunakan untuk menghitung total gaji berdasarkan jumlah jam kerja dan tarif per jam, termasuk tarif lembur jika jumlah jam kerja melebihi 6 jam.
+//   calculateSalary() {
+//     let totalSalary = 0;
+//     if (this.workingHours <= 6) {
+//       totalSalary = this.workingHours * this.hourlyRate;
+//     } else {
+//       totalSalary =
+//         6 * this.hourlyRate + (this.workingHours - 6) * this.overtimeRate;
+//     }
+//     return totalSalary;
+//   }
+// }
 
-  // Metode calculateSalary() digunakan untuk menghitung total gaji berdasarkan jumlah jam kerja dan tarif per jam, termasuk tarif lembur jika jumlah jam kerja melebihi 6 jam.
-  calculateSalary() {
-    let totalSalary = this.workingHours * this.hourlyRate;
-    if (this.workingHours > 6) {
-      // contoh kasus 7 jam, untuk dapat bonus 7 dikurang dengan syarat jam lembur (7-6) = 1, kemudian 1 dikali harga bonus
-      totalSalary += (this.workingHours - 6) * this.overtimeRate;
-    }
-    return totalSalary;
-  }
-}
+// // Karyawan full-time memiliki tarif per jam dan tarif lembur yang berbeda dari karyawan part-time.
+// // Dalam kelas ini, kita menetapkan tarif per jam sebesar IDR 100.000 dan tarif lembur sebesar IDR 75.000.
+// class FulltimeEmployee extends Employee {
+//   constructor() {
+//     super(100000, 75000);
+//   }
+// }
 
-// Karyawan full-time memiliki tarif per jam dan tarif lembur yang berbeda dari karyawan part-time.
-// Dalam kelas ini, kita menetapkan tarif per jam sebesar IDR 100.000 dan tarif lembur sebesar IDR 75.000.
-class FulltimeEmployee extends Employee {
-  constructor() {
-    super(100000, 75000);
-  }
-}
+// // Karyawan part-time juga memiliki tarif per jam dan tarif lembur yang berbeda dari karyawan full-time.
+// // Dalam kelas ini, kita menetapkan tarif per jam sebesar IDR 50.000 dan tarif lembur sebesar IDR 30.000.
+// class ParttimeEmployee extends Employee {
+//   constructor() {
+//     super(50000, 30000);
+//   }
+// }
 
-// Karyawan part-time juga memiliki tarif per jam dan tarif lembur yang berbeda dari karyawan full-time.
-// Dalam kelas ini, kita menetapkan tarif per jam sebesar IDR 50.000 dan tarif lembur sebesar IDR 30.000.
-class ParttimeEmployee extends Employee {
-  constructor() {
-    super(50000, 30000);
-  }
-}
+// const fulltimeEmployee = new FulltimeEmployee();
+// // pada FULLTIME Jika jam kerja lebih dari 6 jam maka kasih bonus sebesar 75.000
+// fulltimeEmployee.addWorkingHours(7);
+// console.log("Full-time Employee Salary:", fulltimeEmployee.calculateSalary());
 
-const fulltimeEmployee = new FulltimeEmployee();
-// pada FULLTIME Jika jam kerja lebih dari 6 jam maka kasih bonus sebesar 75.000
-fulltimeEmployee.addWorkingHours(7);
-console.log("Full-time Employee Salary:", fulltimeEmployee.calculateSalary());
+// // pada PARTTIME Jika jam kerja lebih dari 6 jam maka kasih bonus sebesar 30.000
+// const parttimeEmployee = new ParttimeEmployee();
+// parttimeEmployee.addWorkingHours(7);
+// console.log("Part-time Employee Salary:", parttimeEmployee.calculateSalary());
 
-// pada PARTTIME Jika jam kerja lebih dari 6 jam maka kasih bonus sebesar 30.000
-const parttimeEmployee = new ParttimeEmployee();
-parttimeEmployee.addWorkingHours(7);
-console.log("Part-time Employee Salary:", parttimeEmployee.calculateSalary());
+// CARA MAS DANIL
+// class Employee {
+//     constructor(name) {
+//       this.name = name;
+//       this.workingHours = 0;
+//     }
+//   }
+
+//   class FulltimeEmployee extends Employee {
+//     constructor(name) {
+//       // supaya bisa digunakan oleh induk class, kirim barang dari anak
+//       super(name);
+//     }
+
+//     addWorkingHours(hour) {
+//       this.workingHours += hour;
+//     }
+
+//     calculateTotalSalary() {
+//       const normalRate = 100000;
+//       const overTimeRate = 75000;
+
+//       if (this.workingHours <= 6) {
+//         return {
+//           total: "Rp " + (this.workingHours * normalRate).toLocaleString("id-ID"),
+//         };
+//       } else {
+//         const normalHour = 6;
+//         const overTimehour = this.workingHours - normalHour;
+
+//         return {
+//           total:
+//             "Rp " +
+//             (
+//               overTimehour * overTimeRate +
+//               normalHour * normalRate
+//             ).toLocaleString("id-ID"),
+//         };
+//       }
+//     }
+//   }
+
+//   class ParttimeEmployee extends Employee {
+//     constructor(name) {
+//       // supaya bisa digunakan oleh induk class, kirim barang dari anak
+//       super(name);
+//     }
+
+//     addWorkingHours(hour) {
+//       this.workingHours += hour;
+//     }
+
+//     calculateTotalSalary() {
+//       const normalRate = 50000;
+//       const overTimeRate = 30000;
+
+//       if (this.workingHours <= 6) {
+//         return {
+//           total: "Rp " + (this.workingHours * normalRate).toLocaleString("id-ID"),
+//         };
+//       } else {
+//         const normalHour = 6;
+//         const overTimehour = this.workingHours - normalHour;
+
+//         return {
+//           total:
+//             "Rp " +
+//             (
+//               overTimehour * overTimeRate +
+//               normalHour * normalRate
+//             ).toLocaleString("id-ID"),
+//         };
+//       }
+//     }
+//   }
+
+//   // FULL TIME
+//   const employee1 = new FulltimeEmployee("budi");
+//   employee1.addWorkingHours(7);
+//   console.log(employee1.calculateTotalSalary());
+
+//   // PART TIME
+//   const employee2 = new ParttimeEmployee("joko");
+//   employee2.addWorkingHours(7);
+//   console.log(employee2.calculateTotalSalary());
