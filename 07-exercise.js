@@ -219,21 +219,21 @@
 // console.log(`${input}! = ${calculateFactorial(input)}`);
 
 // Cara Mas Danil
-const factorial = (n) => {
-  if (n === 1) {
-    return {
-      steps: ["1"],
-      total: 1,
-    };
-  } else {
-    const next = factorial(n - 1);
-    return {
-      steps: [n, ...next.steps],
-      total: n * next.total,
-    };
-  }
-};
-const number = 5;
-const { steps, total } = factorial(number);
+// const factorial = (n) => {
+//   if (n === 1) {
+//     return {
+//       steps: ["1"],
+//       total: 1,
+//     };
+//   } else {
+//     const next = factorial(n - 1);
+//     return {
+//       steps: [n, ...next.steps],
+//       total: n * next.total,
+//     };
+//   }
+// };
+// const number = 5;
+// const { steps, total } = factorial(number);
 
-console.log(steps.join(" x ") + " = " + total);
+// console.log(steps.join(" x ") + " = " + total);
